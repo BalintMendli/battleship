@@ -1,9 +1,13 @@
 export default function Ship(length) {
-  const ship = new Array(length).fill(false);
-  const hit = n => (ship[n] = true);
-  const isSunk = () => ship.every(x => x);
+  const positions = new Array(length).fill(false);
+
+  const hit = n => (positions[n] = true);
+
+  const isSunk = () => positions.every(x => x);
+
   return {
     length,
+    positions,
     hit,
     isSunk
   };

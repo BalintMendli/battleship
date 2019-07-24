@@ -1,15 +1,31 @@
 import Ship from '../src/objects/ship';
 
-test('Ship has a length', () => {
-  const ship1 = Ship(4);
-  expect(ship1.length).toEqual(4);
-});
+describe('Ship', () => {
+  const ship = Ship(4);
 
-test('Ship sunks when all positions have been hit', () => {
-  const ship1 = Ship(2);
-  expect(ship1.isSunk()).toBe(false);
-  ship1.hit(0);
-  expect(ship1.isSunk()).toBe(false);
-  ship1.hit(1);
-  expect(ship1.isSunk()).toBe(true);
+  it('has a length', () => {
+    expect(ship.length).toEqual(4);
+  });
+
+  it('has a hit function', () => {
+    expect(typeof ship.hit).toBe('function');
+  });
+
+  it('has an isSunk function', () => {
+    expect(typeof ship.isSunk).toBe('function');
+  });
+
+  it('sinks when all positions have been hit', () => {
+    const ship2 = Ship(2);
+    expect(ship2.isSunk()).toBe(false);
+    ship2.hit(0);
+    expect(ship2.isSunk()).toBe(false);
+    ship2.hit(1);
+    expect(ship2.isSunk()).toBe(true);
+  });
+
+  it('modifies positions when hit', () => {
+    ship.hit(1);
+    expect(ship.positions).toEqual([false, true, false, false]);
+  });
 });
